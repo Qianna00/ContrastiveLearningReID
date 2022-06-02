@@ -9,7 +9,7 @@ setup(name='ContrastiveLearningReID',
       # url='',
       install_requires=[
           'numpy', 'torch', 'torchvision',
-          'six', 'h5py', 'Pillow', 'scipy',
+          'six', 'h5py', 'Pillow', 'scipy==1.7.1',
           'scikit-learn==1.0', 'metric-learn', 'faiss_gpu'],
       packages=find_packages(),
       keywords=[
