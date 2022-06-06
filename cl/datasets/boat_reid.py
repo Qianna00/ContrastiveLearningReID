@@ -21,7 +21,7 @@ class BoatReID(BaseImageDataset):
     def __init__(self, root, verbose=True, **kwargs):
         super(BoatReID, self).__init__()
         # self.dataset_dir = osp.join(root, self.dataset_dir)
-        self.dataset_dir = '/root/data/zq/data/boat_reid'
+        self.dataset_dir = '/root/data/data/boat_reid'
         self.train_dir = osp.join(self.dataset_dir, 'bounding_box_train')
         self.query_dir = osp.join(self.dataset_dir, 'query')
         self.gallery_dir = osp.join(self.dataset_dir, 'bounding_box_test')

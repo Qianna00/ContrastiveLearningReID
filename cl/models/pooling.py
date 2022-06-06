@@ -80,7 +80,7 @@ class GeneralizedMeanPooling(nn.Module, ABC):
     def forward(self, x):
         x = x.clamp(min=self.eps).pow(self.p)
         if not self.extra:
-            return torch.nn.functional.adaptive_avg_pool2d(x, self.output_size).pow(1.0 / self.p)
+            return torch.nn.functional.adaptive_avg_pool2d(x, 1).pow(1.0 / self.p)
         return torch.nn.functional.adaptive_avg_pool2d(x, 1).pow(1.0 / self.p), \
                torch.nn.functional.adaptive_avg_pool2d(x, self.output_size).pow(1.0 / self.p)
 

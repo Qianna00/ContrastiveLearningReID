@@ -18,10 +18,10 @@ class VesselReID(Market1501):
     # images: 12936 (train) + 3368 (query) + 15913 (gallery)
     """
 
-    def __init__(self, root, cropped=False, verbose=True, **kwargs):
-        super(VesselReID, self).__init__(verbose=verbose, **kwargs)
+    def __init__(self, root, cropped=True, verbose=True, **kwargs):
+        super(VesselReID, self).__init__(root, verbose=verbose, **kwargs)
         if cropped:
-            self.dataset_dir = '/root/data/zq/data/vessel_reid/cropped'
+            self.dataset_dir = '/root/data/data/vessel_reid/cropped'
         else:
             self.dataset_dir = '/root/data/zq/data/vessel_reid'
         self.train_dir = osp.join(self.dataset_dir, 'bounding_box_train')

@@ -15,8 +15,12 @@ from .utils import to_torch
 
 def extract_cnn_feature(model, inputs):
     inputs = to_torch(inputs).cuda()
-    outputs, _, _, _, _ = model(inputs)
-    # print(type(outputs), len(outputs) if isinstance(outputs, collections.abc.Iterable) else None)
+
+    # for only global features
+    outputs = model(inputs)
+
+    # for both global and local(patch) features
+    # outputs, _, _, _, _ = model(inputs)
     outputs = outputs.data.cpu()
     return outputs
 

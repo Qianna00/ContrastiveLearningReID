@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2b3811b5-4d36-46d8-a7b8-2fa8c24aa17e" name="v100_0101">
+        <fileTransfer rootFolder="/home/data/cl_reid/code" accessType="SFTP" host="202.194.203.129" port="0101" sshConfigId="0cbd337e-65f8-40fd-8642-d17eb5223adf" sshConfig="user@202.194.203.129:0101 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

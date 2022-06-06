@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cluster-contrast-reid-main.iml" filepath="$PROJECT_DIR$/.idea/cluster-contrast-reid-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/contranstive_learning_reid.iml" filepath="$PROJECT_DIR$/.idea/contranstive_learning_reid.iml" />
     </modules>
   </component>
 </project>

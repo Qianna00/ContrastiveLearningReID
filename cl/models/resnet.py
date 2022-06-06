@@ -4,7 +4,7 @@ from torch.nn import functional as F
 from torch.nn import init
 import torchvision
 import torch
-from .pooling import build_pooling_layer, GeneralizedMeanPoolingP
+from cl.models.pooling import build_pooling_layer, GeneralizedMeanPoolingP
 
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
@@ -31,10 +31,15 @@ class ResNet(nn.Module):
             raise KeyError("Unsupported depth:", depth)
         resnet = ResNet.__factory[depth]()
         if pretrained:
-            state_dict = torch.load('/root/data/zq/pretrained_models/resnet50-0676ba61.pth')
+            if self.depth == 50:
+                state_dict = torch.load('/root/data/model/resnet50-0676ba61.pth')
+            if self.depth == 18:
+                state_dict = torch.load('/root/data/model/resnet18-f37072fd.pth')
+            if self.depth == 34:
+                state_dict = torch.load('/root/data/model/resnet34-333f7ec4.pth')
             resnet.load_state_dict(state_dict)
-        resnet.layer4[0].conv2.stride = (1, 1)
-        resnet.layer4[0].downsample[0].stride = (1, 1)
+        # resnet.layer4[0].conv2.stride = (1, 1)
+        # resnet.layer4[0].downsample[0].stride = (1, 1)
         self.base = nn.Sequential(
             resnet.conv1, resnet.bn1, resnet.relu, resnet.maxpool,
             resnet.layer1, resnet.layer2, resnet.layer3, resnet.layer4)

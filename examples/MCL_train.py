@@ -16,7 +16,6 @@ from torch import nn
 from torch.backends import cudnn
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
-from mmcv.cnn import build_norm_layer
 
 from cl import datasets
 from cl import models
@@ -143,7 +142,7 @@ def main_worker(args):
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=args.step_size, gamma=0.1)
 
     # Trainer
-    trainer = MCLTrainer(model, alpha=1.0, gamma=0.5)
+    trainer = MCLTrainer(model, alpha=1.0, gamma=1.0)
     # trainer = TMPTrainer(model)
 
     for epoch in range(args.epochs):
@@ -217,10 +216,10 @@ def main_worker(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Self-paced contrastive learning on unsupervised re-ID")
     # data
-    parser.add_argument('-d', '--dataset', type=str, default='dukemtmcreid',
+    parser.add_argument('-d', '--dataset', type=str, default='boatreid',
                         choices=datasets.names())
-    parser.add_argument('-b', '--batch-size', type=int, default=2)
-    parser.add_argument('-j', '--workers', type=int, default=4)
+    parser.add_argument('-b', '--batch-size', type=int, default=1)
+    parser.add_argument('-j', '--workers', type=int, default=1)
     parser.add_argument('--height', type=int, default=256, help="input height")
     parser.add_argument('--width', type=int, default=128, help="input width")
     parser.add_argument('--num-instances', type=int, default=4,
@@ -239,7 +238,7 @@ if __name__ == '__main__':
                         help="hyperparameter for jaccard distance")
 
     # model
-    parser.add_argument('-a', '--arch', type=str, default='resnet50',
+    parser.add_argument('-a', '--arch', type=str, default='resnet18',
                         choices=models.names())
     parser.add_argument('--features', type=int, default=0)
     parser.add_argument('--dropout', type=float, default=0)
@@ -261,7 +260,7 @@ if __name__ == '__main__':
     parser.add_argument('--data-dir', type=str, metavar='PATH',
                         default=osp.join(working_dir, 'data'))
     parser.add_argument('--logs-dir', type=str, metavar='PATH',
-                        default=osp.join(working_dir, 'logs'))
+                        default=osp.join(working_dir, 'logs2'))
     parser.add_argument('--pooling-type', type=str, default='gem')
     parser.add_argument('--use-hard', action="store_true")
     parser.add_argument('--no-cam',  action="store_true")
